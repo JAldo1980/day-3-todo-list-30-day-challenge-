@@ -4,9 +4,10 @@ const addItemBtn = document.getElementById("add-item-btn");
 addItemBtn.addEventListener("click", createObject);
 
 // construct object
-function ConstructObject(item, id) {
+function ConstructObject(item, id, star) {
   this.item = item;
   this.id = id;
+  this.star = star;
 }
 
 // create object
@@ -22,7 +23,8 @@ function createObject() {
   }
   //   end of input alert
   let itemId = newId.join(" ");
-  const newObject = new ConstructObject(item, itemId);
+  let star = false;
+  const newObject = new ConstructObject(item, itemId, star);
   newObjectArr.push(newObject);
   renderObject();
 }
@@ -67,6 +69,7 @@ toggleEl.addEventListener("click", function () {
 function clearValues() {
   document.getElementById("item-input").value = "";
 }
+
 // delete items
 const identOutputEl = document.querySelector(".output-el");
 
@@ -83,27 +86,21 @@ function deleteItem() {
   });
 }
 
-// star activation function
-function changeStarState() {
-  let starIcons = document.querySelectorAll(".star-icon");
+// change star state
 
+function changeStarState() {
+  const starIcons = document.querySelectorAll(".star-icon");
   starIcons.forEach((starIcon) => {
     starIcon.addEventListener("click", (e) => {
       let targetId = e.target.parentElement.id;
       let targetItem = newObjectArr.find((item) => item.id === targetId);
       if (targetItem) {
-        //   this line of code below flips the value of the star property from its current state to the opposite state
         targetItem.star = !targetItem.star;
         starIcon.textContent = targetItem.star ? "★" : "✩";
       }
-      console.log(newObjectArr);
     });
   });
 }
-
-// PRACTICE
-
-// PRACTICE
 
 // create random id
 const randomChar = [
@@ -144,3 +141,34 @@ function randomId() {
     newId.push(randomPassword);
   }
 }
+
+// function deleteItem() {
+//     identOutputEl.addEventListener("click", (e) => {
+//       let targetId = e.target.id;
+//       if (targetId) {
+//         let index = newObjectArr.findIndex((item) => item.id === targetId);
+//         if (index !== -1) {
+//           newObjectArr.splice(index, 1);
+//         }
+//         renderObject();
+//       }
+//     });
+//   }
+
+//   // star activation function
+//   function changeStarState() {
+//     let starIcons = document.querySelectorAll(".star-icon");
+
+//     starIcons.forEach((starIcon) => {
+//       starIcon.addEventListener("click", (e) => {
+//         let targetId = e.target.parentElement.id;
+//         let targetItem = newObjectArr.find((item) => item.id === targetId);
+//         if (targetItem) {
+//           //   this line of code below flips the value of the star property from its current state to the opposite state
+//           targetItem.star = !targetItem.star;
+//           starIcon.textContent = targetItem.star ? "★" : "✩";
+//         }
+//         console.log(newObjectArr);
+//       });
+//     });
+//   }
