@@ -39,14 +39,15 @@ function renderObject() {
         <div id="${item.id}" class="item-box-el">
             ${item.item}
             <div class="star-icon">
-            ✩
+            ${item.star ? "★" : "✩"}
             </div>
         </div>
         `;
   });
+
+  changeStarState();
   clearValues();
   deleteItem();
-  changeStarState();
   console.log(newObjectArr);
 }
 
@@ -99,6 +100,33 @@ function changeStarState() {
         starIcon.textContent = targetItem.star ? "★" : "✩";
       }
     });
+  });
+}
+
+// filter items
+const filterBtn = document.getElementById("filter-btn");
+filterBtn.addEventListener("click", filterItems);
+
+function filterStarredItems() {
+  return newObjectArr.filter((item) => item.star === true);
+}
+
+function filterItems() {
+  // this basically 'filteredItems' is a NEW array...
+  const filteredItems = filterStarredItems();
+
+  // Hide all items
+  const itemBoxes = document.querySelectorAll(".item-box-el");
+  itemBoxes.forEach((itemBox) => {
+    itemBox.classList.toggle("hide");
+  });
+
+  // Show only the filtered items
+  filteredItems.forEach((item) => {
+    const itemBox = document.getElementById(item.id);
+    if (itemBox) {
+      itemBox.style.display = "flex";
+    }
   });
 }
 
