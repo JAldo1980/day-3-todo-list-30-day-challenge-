@@ -169,34 +169,3 @@ function randomId() {
     newId.push(randomPassword);
   }
 }
-
-// function deleteItem() {
-//     identOutputEl.addEventListener("click", (e) => {
-//       let targetId = e.target.id;
-//       if (targetId) {
-//         let index = newObjectArr.findIndex((item) => item.id === targetId);
-//         if (index !== -1) {
-//           newObjectArr.splice(index, 1);
-//         }
-//         renderObject();
-//       }
-//     });
-//   }
-
-//   // star activation function
-//   function changeStarState() {
-//     let starIcons = document.querySelectorAll(".star-icon");
-
-//     starIcons.forEach((starIcon) => {
-//       starIcon.addEventListener("click", (e) => {
-//         let targetId = e.target.parentElement.id;
-//         let targetItem = newObjectArr.find((item) => item.id === targetId);
-//         if (targetItem) {
-//           //   this line of code below flips the value of the star property from its current state to the opposite state
-//           targetItem.star = !targetItem.star;
-//           starIcon.textContent = targetItem.star ? "★" : "✩";
-//         }
-//         console.log(newObjectArr);
-//       });
-//     });
-//   }
