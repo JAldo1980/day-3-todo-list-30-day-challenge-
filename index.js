@@ -11,7 +11,7 @@ function ConstructObject(item, id, star) {
 }
 
 // create object
-const newObjectArr = [];
+let newObjectArr = [];
 
 function createObject() {
   randomId();
@@ -108,6 +108,7 @@ const filterBtn = document.getElementById("filter-btn");
 filterBtn.addEventListener("click", filterItems);
 
 function filterStarredItems() {
+  // creates a new array with the filtered items
   return newObjectArr.filter((item) => item.star === true);
 }
 
@@ -118,14 +119,14 @@ function filterItems() {
   // Hide all items
   const itemBoxes = document.querySelectorAll(".item-box-el");
   itemBoxes.forEach((itemBox) => {
-    itemBox.classList.toggle("hide");
+    itemBox.classList.toggle("hide"); // To hide an item
   });
 
   // Show only the filtered items
   filteredItems.forEach((item) => {
     const itemBox = document.getElementById(item.id);
     if (itemBox) {
-      itemBox.style.display = "flex";
+      itemBox.classList.toggle("hide"); // To show an item
     }
   });
 }
